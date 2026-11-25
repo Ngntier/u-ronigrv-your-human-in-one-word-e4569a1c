@@ -14,6 +14,10 @@ def validate(word):
         raise ValueError("entry word must contain no whitespace")
     if not word.isalpha():
         raise ValueError("entry word must be a single token of letters")
+    if not word.isascii():
+        raise ValueError("entry word must be ASCII letters only")
+    if len(word.encode("utf-8")) > 30:
+        raise ValueError("entry word must be at most 30 UTF-8 bytes")
     word.encode("utf-8")
     return word
 
